@@ -7,17 +7,11 @@
     >
       <div class="navbar-brand">
         <div class="navbar-item">画像管理アプリ</div>
-
-        <!-- <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div> -->
       </div>
     </nav>
 
     <section class="main-content columns">
-      <aside class="column is-2 section">
+      <aside class="column is-2 mx-3 py-5">
         <p class="menu-label is-hidden-touch">
           メニュー
         </p>
@@ -36,7 +30,7 @@
         </ul>
       </aside>
 
-      <div class="container column is-10">
+      <div class="container column is-9">
         <Nuxt />
       </div>
     </section>
@@ -48,18 +42,6 @@ export default {
   data () {
     return {
       items: [
-        /*
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' }
-        },
-        {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
-        },
-        */
         {
           title: '投稿一覧',
           icon: 'apps',
@@ -75,3 +57,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.navbar-item {
+  font-size: 1.5rem;
+}
+</style>

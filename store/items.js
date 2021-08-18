@@ -16,23 +16,23 @@ export const getters = {
 
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('items', itemsRef)
+    bindFirestoreRef('items', itemsRef.orderBy('created', 'desc'));
   }),
   create: firestoreAction((context, input) => {
-// console.log(input.title)
    // Storage にアップロード
    const storageRef = firebase.storage().ref();
    const fileUrl = `pictures/${input.file.name}.${input.file.type}`;
    const picturesRef = storageRef.child(fileUrl);
    picturesRef.putString(input.file.dataUrl, 'data_url').then(() => {
-// console.log('upload!');
      // Firestore に保存
-      itemsRef.add({
-        title: input.title,
-        memo: input.memo,
-        fileUrl: fileUrl,
-        created: firebase.firestore.FieldValue.serverTimestamp()
-      })
+     itemsRef.add({
+       title: input.title,
+       memo: input.memo,
+       fileUrl: fileUrl,
+       created: firebase.firestore.FieldValue.serverTimestamp()
+     }).then(() => {
+       $nuxt.$router.push('/')
+     });
     });
   }),
 
