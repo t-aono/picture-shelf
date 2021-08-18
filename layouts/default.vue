@@ -6,29 +6,20 @@
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
-          >
-        </a>
+        <div class="navbar-item">画像管理アプリ</div>
 
-        <div class="navbar-burger">
+        <!-- <div class="navbar-burger">
           <span />
           <span />
           <span />
-        </div>
+        </div> -->
       </div>
     </nav>
 
     <section class="main-content columns">
       <aside class="column is-2 section">
         <p class="menu-label is-hidden-touch">
-          General
+          メニュー
         </p>
         <ul class="menu-list">
           <li
@@ -57,6 +48,7 @@ export default {
   data () {
     return {
       items: [
+        /*
         {
           title: 'Home',
           icon: 'home',
@@ -66,7 +58,18 @@ export default {
           title: 'Inspire',
           icon: 'lightbulb',
           to: { name: 'inspire' }
-        }
+        },
+        */
+        {
+          title: '投稿一覧',
+          icon: 'apps',
+          to: { name: 'index' }
+        },
+        {
+          title: '新規投稿',
+          icon: 'plus',
+          to: { name: 'create' }
+        },
       ]
     }
   }

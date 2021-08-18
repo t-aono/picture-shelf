@@ -8,14 +8,32 @@ export const state = () => ({
   items: []
 })
 
+export const getters = {
+  dbItems(state) {
+    return state.items;
+  },
+}
+
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }) => {
     bindFirestoreRef('items', itemsRef)
   }),
-  add: firestoreAction((context, value) => {
-    itemsRef.add({
+  create: firestoreAction((context, input) => {
+// console.log(input.title)
+   // Storage にアップロード
+   const storageRef = firebase.storage().ref();
+   const fileUrl = `pictures/${input.file.name}.${input.file.type}`;
+   const picturesRef = storageRef.child(fileUrl);
+   picturesRef.putString(input.file.dataUrl, 'data_url').then(() => {
+// console.log('upload!');
+     // Firestore に保存
+      itemsRef.add({
+        title: input.title,
+        memo: input.memo,
+        fileUrl: fileUrl,
+        created: firebase.firestore.FieldValue.serverTimestamp()
+      })
+    });
+  }),
 
-      created: firebase.firestore.FieldValue.serverTimestamp()
-    })
-  })
 }
