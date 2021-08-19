@@ -13,21 +13,15 @@ export const getters = {
   dbItems(state) {
     return state.items;
   },
-  filterCategory: ((state, { category }) => {
-console.log(category);return;
+  filterCategory: (state) => (category) => {
     return state.items.filter(item => item.category == category);
-  }),
+  },
 }
-/*
-export const mutations = {
-  filterCategory: ((state, category) => {
-    state.items = state.items.filter(item => item.category == category);
-  }),
-}
-*/
+
 export const actions = {
-  init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('items', itemsRef.orderBy('created', 'desc'));
+  init: firestoreAction(({ bindFirestoreRef }, uid) => {
+console.log(uid)
+    bindFirestoreRef('items', itemsRef.where('uid', '==', uid).orderBy('created', 'desc'));
   }),
   create: firestoreAction((context, input) => {
     // Storage にアップロード
@@ -40,7 +34,8 @@ export const actions = {
         memo: input.memo,
         fileUrl: fileUrl,
         category: input.category,
-        created: firebase.firestore.FieldValue.serverTimestamp()
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+        uid: firebase.auth().currentUser.uid,
       }).then(() => {
         $nuxt.$router.push('/');
       });
@@ -50,7 +45,8 @@ export const actions = {
     // DB 更新
     itemsRef.doc(data.id).update({
       title: data.title,
-      memo: data.memo
+      memo: data.memo,
+      category: data.category,
     }).then(() => {
       $nuxt.$router.push('/');
     });
@@ -65,9 +61,4 @@ export const actions = {
       });
     });
   }),
-  /*
-  filterCategory: firestoreAction(({ commit }, category) => {
-    commit('filterCategory', category);
-  }),
-  */
 }

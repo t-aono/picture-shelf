@@ -21,13 +21,14 @@ export const mutations = {
 }
 
 export const actions = {
-  init: firestoreAction(({ bindFirestoreRef }) => {
-    bindFirestoreRef('categories', categoriesRef.orderBy('name', 'asc'));
+  init: firestoreAction(({ bindFirestoreRef }, uid) => {
+    bindFirestoreRef('categories', categoriesRef.where('uid', '==', uid).orderBy('name', 'asc'));
   }),
   create: firestoreAction((context, input) => {
     // DB に保存
     categoriesRef.add({
-      name: input.name
+      name: input.name,
+      uid: firebase.auth().currentUser.uid,
     });
   }),
   remove: firestoreAction((context, id) => {

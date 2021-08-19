@@ -8,10 +8,18 @@
       <div class="navbar-brand">
         <div class="navbar-item">画像管理アプリ</div>
       </div>
+      <div :class="['navbar-end', { 'd-none': !isLogined }]">
+        <div class="navbar-item">
+          <a class="button is-primary" @click="logout()">
+            <b-icon icon="logout"></b-icon>
+            <span>ログアウト</span>
+          </a>
+        </div>
+      </div>
     </nav>
 
     <section class="main-content columns">
-      <aside class="column is-2 mx-3 py-5">
+      <aside :class="['column' ,'is-2' ,'mx-3' ,'py-5', { 'd-none': !isLogined }]">
         <p class="menu-label is-hidden-touch">
           メニュー
         </p>
@@ -38,33 +46,57 @@
 </template>
 
 <script>
+import firebase from "~/plugins/firebase";
+
 export default {
-  data () {
+  data() {
     return {
       items: [
         {
-          title: '投稿一覧',
-          icon: 'apps',
-          to: { name: 'index' }
+          title: "投稿一覧",
+          icon: "apps",
+          to: { name: "index" },
         },
         {
-          title: '新規投稿',
-          icon: 'plus',
-          to: { name: 'create' }
+          title: "新規投稿",
+          icon: "plus",
+          to: { name: "create" },
         },
         {
-          title: 'カテゴリー管理',
-          icon: 'shape-outline',
-          to: { name: 'category' }
+          title: "カテゴリー",
+          icon: "shape-outline",
+          to: { name: "category" },
         },
-      ]
+      ],
+      isLogined: false,
+    };
+  },
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) this.isLogined = true;
+      else this.isLogined = false;
+    });
+  },
+  methods: {
+    logout() {
+      if (window.confirm('ログアウトしますか？')) {
+        firebase.auth().signOut().then(() => {
+          this.$router.push('/login');
+        })
+      }
     }
   }
-}
+};
 </script>
 
 <style scoped>
 .navbar-item {
   font-size: 1.5rem;
+}
+.d-none {
+  display: none;
+}
+aside {
+  white-space: nowrap;
 }
 </style>

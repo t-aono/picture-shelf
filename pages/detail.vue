@@ -10,12 +10,24 @@
     <div class="mb-5">
       <img :src="imageUrl">
     </div>
-    <b-button type="is-primary" outlined @click="update()">更新</b-button>
-    <b-button type="is-primary" outlined @click="remove()" class="ml-5">削除</b-button>
+    <b-field label="カテゴリー"></b-field>
+    <div class="select">
+      <select v-model="category">
+        <option v-for="category in categories" :key="category.id">
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
+    <div class="mt-5">
+      <b-button type="is-primary" outlined @click="update()">更新</b-button>
+      <b-button type="is-primary" outlined @click="remove()" class="ml-5">削除</b-button>
+    </div>
   </section>
 </template>
 
 <script>
+import firebase from "~/plugins/firebase";
+
 export default {
   props: ['item'],
   data() {
@@ -25,20 +37,32 @@ export default {
       imageUrl: "",
       id: "",
       fileUrl: "",
+      category: "",
+      categories: [],
     };
   },
   created() {
+    // 認証
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) this.$router.push('/login');
+      // カテゴリーの取得
+      this.$store.dispatch("categories/init", user.uid);
+      this.categories = this.$store.getters["categories/dbCategories"];
+    });
+    // 投稿内容をセット
     this.title = this.$route.query.title;
     this.memo = this.$route.query.memo;
     this.imageUrl = this.$route.query.imageUrl;
     this.id = this.$route.query.id;
     this.fileUrl = this.$route.query.fileUrl;
+    this.category = this.$route.query.category;
   },
   methods: {
     update() {
       this.$store.dispatch("items/update", {
         title: this.title,
         memo: this.memo,
+        category: this.category,
         id: this.id
       });
     },

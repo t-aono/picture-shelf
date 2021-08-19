@@ -57,6 +57,8 @@
 </template>
 
 <script>
+import firebase from "~/plugins/firebase";
+
 export default {
   data() {
     return {
@@ -66,15 +68,19 @@ export default {
       type: "",
       dataUrl: "",
       categories: [],
-      category: "",
+      category: "未分類",
       error: false,
       loading: false,
     };
   },
   created() {
-    // カテゴリーの取得
-    this.$store.dispatch("categories/init");
-    this.categories = this.$store.getters["categories/dbCategories"];
+    // 認証
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) this.$router.push('/login');
+      // カテゴリーの取得
+      this.$store.dispatch("categories/init", user.uid);
+      this.categories = this.$store.getters["categories/dbCategories"];
+    });
   },
   methods: {
     create() {
