@@ -52,6 +52,11 @@ export default {
           icon: 'plus',
           to: { name: 'create' }
         },
+        {
+          title: 'カテゴリー管理',
+          icon: 'shape-outline',
+          to: { name: 'category' }
+        },
       ]
     }
   }
