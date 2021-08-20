@@ -64,7 +64,7 @@ export default {
         },
         {
           title: "カテゴリー",
-          icon: "shape-outline",
+          icon: "format-list-bulleted",
           to: { name: "category" },
         },
       ],
