@@ -17,7 +17,5 @@
 - カテゴリーの管理機能
 - ログイン機能
 
-<br>
-
-画面イメージはこちら → [Notion](https://ossified-elephant-7c0.notion.site/0505f98c79ff46be8b007ce88b35c41f)
-
+### 画面イメージ
+![](https://user-images.githubusercontent.com/46856574/145412729-4fbbab7c-c8cc-4756-8749-ddf417c68779.png)
