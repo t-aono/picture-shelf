@@ -11,6 +11,7 @@ Manage data with Cloud Firestore using SDK (Software Development Kit).
 Images are stored in Cloud Storage for Firebase.
 
 ## Demo
+![GkO9Dlgtebgapz4VW5IO1640917256-1640917592](https://user-images.githubusercontent.com/46856574/147800047-9600f579-fdf6-44e3-961c-770a00cb4071.gif)
 
 <!-- ## VS. -->
 
