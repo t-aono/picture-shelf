@@ -1,21 +1,64 @@
-### 利用した技術
+# picture-shelf
 
-- Nuxt.js　（フレームワーク）
-- Firebase / Firestore / Storage / Authentication　（Baas：Backend as a Service）
-- VuexFire　（Firestore 操作用ライブラリ）
-- Buefy　（UI コンポーネント）
+## Overview
 
-### **要件**
+A simple Web application that allows you to manage images
 
-- 画像の登録ができる。
-- タイトル、メモも合わせて登録できる。
-- カテゴリー別に管理したい。
+## Description
 
-### 機能
+Developed using Nuxt.js, a web application framework.  
+Manage data with Cloud Firestore using SDK (Software Development Kit).  
+Images are stored in Cloud Storage for Firebase.
 
-- 画像とタイトル、メモの管理機能
-- カテゴリーの管理機能
-- ログイン機能
+## Demo
 
-### 画面イメージ
-![](https://user-images.githubusercontent.com/46856574/145412729-4fbbab7c-c8cc-4756-8749-ddf417c68779.png)
+<!-- ## VS. -->
+
+## Requirement
+
+- Node.js
+- yarn
+
+## Usage
+
+Local login page url.  
+ http://localhost:3000/
+
+## Install
+
+You need to create a project in Firebase before installation.
+
+1. Get source code
+
+   ```
+   git clone git@github.com:t-aono/picture-shelf.git
+   ```
+
+2. Copy .env-example to create .env and set environment variables for your Firebase project.
+
+   ```
+   cp .env-example .env
+   ```
+
+3. Add package.
+
+   ```
+   yarn
+   ```
+
+4. Start local development environment.
+
+   ```
+   yarn start
+   ```
+
+<!-- ## Contribution -->
+
+<!-- ## Licence -->
+
+## Author
+
+[t-aono](https://github.com/t-aono)
+
+<!-- README.md Sample -->
+<!-- https://deeeet.com/writing/2014/07/31/readme/ -->
