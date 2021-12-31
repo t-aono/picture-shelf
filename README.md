@@ -2,7 +2,7 @@
 
 ## Overview
 
-A simple Web application that allows you to manage images
+A simple Web application that allows you to manage images.
 
 ## Description
 
