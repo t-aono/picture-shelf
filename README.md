@@ -34,7 +34,7 @@ You need to create a project in Firebase before installation.
 1. Get source code
 
    ```
-   git clone git@github.com:t-aono/picture-shelf.git
+   git clone git clone git@github.com:t-aono/picture-shelf.git
    ```
 
 2. Copy .env-example to create .env and set environment variables for your Firebase project.
