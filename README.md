@@ -17,8 +17,10 @@ Images are stored in Cloud Storage for Firebase.
 
 ## Requirement
 
-- Node.js
-- yarn
+- "firebase": "^8.9.1"
+- "nuxt": "^2.15.7",
+- "nuxt-buefy": "^0.4.8",
+- "vuexfire": "^3.2.5"
 
 ## Usage
 
