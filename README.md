@@ -1,67 +1,61 @@
 # picture-shelf
 
-## Overview
+## 概要
 
-A simple Web application that allows you to manage images.
+画像を管理するためのシンプルなWebアプリケーション
 
-## Description
+## 機能
 
-Developed using Nuxt.js, a web application framework.  
-Manage data with Cloud Firestore using SDK (Software Development Kit).  
-Images are stored in Cloud Storage for Firebase.
+- 画像のアップロード
+- タイトル、メモ、カテゴリーと紐付けて画像を保存
+- 画像の一覧表示、カテゴリーでの絞り込み
+- 会員登録、ログイン
 
-## Demo
+## 使用技術
+
+Nuxt.js / Firebase (Firestore, Storage, Authentication) / VuexFire / Buefy
+
+## デモ
 ![GkO9Dlgtebgapz4VW5IO1640917256-1640917592](https://user-images.githubusercontent.com/46856574/147800047-9600f579-fdf6-44e3-961c-770a00cb4071.gif)
 
-<!-- ## VS. -->
+## ローカルでの動作方法
 
-## Requirement
+事前にFirebaseでプロジェクトを作成してください。  
+作成後以下の操作を行います。  
+- Authentication でメールパスワード認証を有効に変更
+- Firestore Database でデータベースを作成
+- Storage で Rules を変更 
+  ```
+  allow read, write: if false;
+  ↓
+  allow read, write;
+  ```
 
-- "firebase": "^8.9.1"
-- "nuxt": "^2.15.7",
-- "nuxt-buefy": "^0.4.8",
-- "vuexfire": "^3.2.5"
-
-## Usage
-
-Local login page url.  
- http://localhost:3000/
-
-## Install
-
-You need to create a project in Firebase before installation.
-
-1. Get source code
+1. コードをクローン
 
    ```
    git clone git clone git@github.com:t-aono/picture-shelf.git
    ```
 
-2. Copy .env-example to create .env and set environment variables for your Firebase project.
+2. .env-example をコピーして .env を作成  
+  .env には Firebase SDK の firebaseConfig の値を入力してください。
 
    ```
    cp .env-example .env
-   ```
+   ```  
 
-3. Add package.
+3. パッケージのインストールとローカル環境起動
 
    ```
    yarn
+   yarn dev
    ```
 
-4. Start local development environment.
+4. ブラウザでトップページにアクセス
 
-   ```
-   yarn start
-   ```
+    http://localhost:3000/
 
-<!-- ## Contribution -->
-
-<!-- ## Licence -->
-
-## Author
-
-[t-aono](https://github.com/t-aono)
-
-<!-- README.md Sample -->
-<!-- https://deeeet.com/writing/2014/07/31/readme/ -->
+5. Firestoreでインデックスの作成  
+デーベースへの登録時に複合インデックスの作成が必要です。  
+初回データ登録操作時にブラウザのコンソールへ作成用リンクのURLが出力されます。  
+そちらからインデックス作成を行なってください。作成には数分かかります。
