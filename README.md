@@ -16,7 +16,8 @@
 Nuxt.js / Firebase (Firestore, Storage, Authentication) / VuexFire / Buefy
 
 ## デモ
-![GkO9Dlgtebgapz4VW5IO1640917256-1640917592](https://user-images.githubusercontent.com/46856574/147800047-9600f579-fdf6-44e3-961c-770a00cb4071.gif)
+
+![D9qzbj40z7foblWhUChu1659237219-1659237247](https://user-images.githubusercontent.com/46856574/182008305-fa3f54ca-922c-41c9-9cdb-614807549c5f.gif)
 
 ## ローカルでの動作方法
 
